@@ -1,4 +1,3 @@
-export { default as Alert } from './alert';
 export { default as Button } from './button';
 export { default as Icon } from './icon';
 export { default as Modal } from './modal';
@@ -12,7 +11,6 @@ export { default as Dropdown } from './dropdown';
 export { default as Drawer } from './drawer';
 export { default as Message } from './message';
 export { default as Checkbox } from './checkbox';
-export { default as Confirm } from './confirm';
 export { default as Popover } from './popover';
 export { default as Progress } from './progress';
 export { default as Radio } from './radio';

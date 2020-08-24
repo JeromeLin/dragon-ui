@@ -270,6 +270,12 @@ module.exports = {
         module: () => import('@/components/drawer/demo.md'),
         style: false,
       },
+      {
+        key: 'modal',
+        name: '模态框',
+        module: () => import('@/components/modal/demo.md'),
+        style: true,
+      },
     ],
     other: [
       // {

@@ -4,20 +4,14 @@ import { ModalFooterProps } from './PropsType';
 
 class ModalFooter extends Component<ModalFooterProps, any> {
   static defaultProps = {
-    prefixCls: 'ui-modal',
-    style: {},
+    prefixCls: 'zw-modal',
   };
 
   render() {
-    const { children, style, prefixCls, className } = this.props;
-
-    const cls = classnames({
-      [`${prefixCls}-footer`]: true,
-      [className!]: !!className,
-    });
-
+    const { children, prefixCls, className, ...otherProps } = this.props;
+    const cls = classnames(`${prefixCls}__footer`, className);
     return (
-      <div className={cls} style={style}>
+      <div className={cls} {...otherProps}>
         {children}
       </div>
     );

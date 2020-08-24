@@ -13,12 +13,12 @@ class Alert extends Component<AlertProps, any> {
     className: '',
     hideIcon: false,
     closable: true,
-    onClose: () => {},
+    onClose: () => { },
   };
 
   render() {
     const {
-      theme, message, closable, cancelText, onClose, width,
+      theme, message, cancelText, onClose, width,
       className, visible, prefixCls, hideIcon, locale,
     } = this.props;
 
@@ -41,20 +41,12 @@ class Alert extends Component<AlertProps, any> {
         width={width}
         className={className}
         visible={visible}
+        footer={<Button onClick={onClose}>{cancelText || locale!.cancelText}</Button>}
       >
-        <Modal.Body>
-          <div className={prefixCls}>
-            {!hideIcon && <Icon type={iconType} theme={theme} />}
-            <span>{message}</span>
-          </div>
-        </Modal.Body>
-        {
-          closable && (
-            <Modal.Footer>
-              <Button onClick={onClose}>{cancelText || locale!.cancelText}</Button>
-            </Modal.Footer>
-          )
-        }
+        <div className={prefixCls}>
+          {!hideIcon && <Icon type={iconType} theme={theme} />}
+          <span>{message}</span>
+        </div>
       </Modal>
     );
   }

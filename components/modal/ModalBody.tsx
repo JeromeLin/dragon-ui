@@ -4,23 +4,13 @@ import { ModalBodyProps } from './PropsType';
 
 class ModalBody extends Component<ModalBodyProps, any> {
   static defaultProps = {
-    prefixCls: 'ui-modal',
-    height: 'auto',
-    style: {},
+    prefixCls: 'zw-modal',
   };
 
   render() {
-    const { height, children, prefixCls, className, style } = this.props;
-    const bodyStyle = {
-      ...style,
-      height,
-    };
-
-    const cls = classnames({
-      [`${prefixCls}-body`]: true,
-      [className!]: !!className,
-    });
-
+    const { children, prefixCls, className, style } = this.props;
+    const bodyStyle = { ...style };
+    const cls = classnames(`${prefixCls}__body`, className);
     return (
       <div className={cls} style={bodyStyle}>
         {children}

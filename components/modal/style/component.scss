@@ -1,101 +1,152 @@
-.ui-modal {
-  transform: translate3d(0, 0, 0);
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  -webkit-overflow-scrolling: touch;
-  overflow: auto;
-  z-index: $base-zindex-modal;
-  will-change: opacity;
+@import '../../style/core/index';
 
-  &.radius {
-    .ui-modal-dialog {
-      border-radius: $base-modal-radius;
+$zarmPrefixCls: zw-popup;
+$zarmWebPrefixCls: zw-modal;
+
+@include b(modal) {
+  @include e(content) {
+    background-color: #fff;
+    min-width: 540px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px 7px rgba(0, 0, 0, 0.15);
+    max-height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+  @include m(radius) {
+    @include e(content) {
+      border-radius: 6px;
     }
   }
 
-  &.round {
-    .ui-modal-dialog {
-      border-radius: $base-modal-round;
+  @include m(rect) {
+    @include e(content) {
+      border-radius: 0;
     }
   }
 
-  > .ui-modal-wrapper {
-    width: 100%;
-    margin: auto 0;
+  .#{$zarmPrefixCls}--center {
+    max-width: 95%;
+  }
 
-    > .ui-modal-dialog {
-      position: relative;
-      margin: 60px auto;
-      background: #fff;
-      box-shadow: 0 7px 21px rgba(0, 0, 0, .2);
-      overflow: hidden;
-      z-index: $base-zindex-modal + 1;
-      will-change: transform;
+  @include m(popup) {
+    @include m(top) {
+      .#{$zarmPrefixCls}__wrapper {
+        align-items: baseline;
+        padding: 100px 0;
+      }
 
-      &:focus {
-        outline: none;
+      .#{$zarmPrefixCls}--center {
+        margin: unset;
       }
     }
   }
-  // fix popover-content position when using in Modal
-  .ui-popover-content {
-    position: absolute !important;
-  }
-}
 
-.ui-modal-header {
-  position: relative;
-  height: 50px;
-  border-bottom: 1px solid #e9e9e9;
-  padding: 0 20px;
-
-  .ui-modal-title {
-    font-size: 16px;
-    line-height: 50px;
+  // 仅适用于 Alert和Confirm
+  @include e(alert-icon) {
+    margin-right: 12px;
+    font-size: 18px;
+    vertical-align: middle;
   }
 
-  .ui-modal-close {
-    position: absolute;
-    top: 0;
-    right: 15px;
-    font-size: 20px;
-    line-height: 50px;
-    color: #999;
-    cursor: pointer;
-    // transition: transform .2s ease;
+  @include e(alert-body) {
+    display: inline-block;
+    vertical-align: top;
+    max-width: calc(100% - 30px);
 
-    &:hover {
-      color: #666;
-      // transform: rotate(360deg);
+    @include e(alert-title) {
+      font-size: 16px;
+      font-weight: bold;
+      vertical-align: 0.2em;
+      padding-bottom: 6px;
     }
   }
-}
 
-.ui-modal-body {
-  padding: 20px;
-  // TODO
-  // .ui-popover-content {
-  //   position: absolute !important;
-  // }
-}
-
-.ui-modal-footer {
-  border-top: 1px solid #e9e9e9;
-  padding: 10px 18px;
-  text-align: right;
-
-  button + button {
-    margin-left: 10px;
+  @include e(body) {
+    flex-grow: 1;
+    height: auto;
+    overflow: auto;
+    padding: 16px 16px 20px;
   }
-}
 
-.ui-modal-body-overflow {
-  overflow-y: hidden;
+  @include e(header) {
+    height: 48px;
+    line-height: 46px;
+    padding: 0 16px;
+    position: relative;
+    background-color: #fafafa;
+
+    @include e(title) {
+      color: #343434;
+      font-size: 16px;
+      font-weight: 500;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      margin-right: 30px;
+    }
+
+    @include e(close) {
+      position: absolute;
+      top: 0;
+      right: 8px;
+      width: 28px;
+      text-align: center;
+      font-size: 20px;
+      line-height: 48px;
+      color: #909090;
+      cursor: pointer;
+
+      &:hover {
+        color: #666;
+      }
+    }
+  }
+
+  @include e(hidden-elem) {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  @include e(footer) {
+    padding: 0 16px;
+  }
+
+  @include e(button-warpper) {
+    text-align: right;
+    padding: 16px 0;
+
+    button {
+      margin-left: 12px;
+    }
+  }
+
+  &-alert,
+  &-confirm {
+    .#{$zarmWebPrefixCls}__content {
+      min-width: 380px;
+      width: 380px;
+    }
+
+    .#{$zarmWebPrefixCls}__header {
+      .#{$zarmWebPrefixCls}__close {
+        right: 14px;
+      }
+    }
+
+    .#{$zarmWebPrefixCls}__body {
+      padding: 20px 24px 0;
+    }
+
+    .#{$zarmWebPrefixCls}__footer {
+      padding: 0 24px;
+    }
+
+    .#{$zarmWebPrefixCls}__button-warpper {
+      padding: 16px 0 24px;
+    }
+  }
 }

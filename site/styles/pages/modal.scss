@@ -1,0 +1,21 @@
+.modal-page {
+  button {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+.scroll-in-modal {
+  height: '100%';
+
+  .za-popup {
+    height: 100%;
+    max-height: 80%;
+  }
+}
+
+.title-background {
+  .zw-modal__header {
+    background-color: #fff;
+  }
+}
